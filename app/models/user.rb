@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-  has_many :pictures
+  has_many :pictures, :comments 
 end
