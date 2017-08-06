@@ -1,6 +1,7 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-
+  # before_filter :authorize
+  
   # GET /pictures
   # GET /pictures.json
   def index
@@ -24,6 +25,7 @@ class PicturesController < ApplicationController
   # POST /pictures
   # POST /pictures.json
   def create
+    p params
     @picture = Picture.new(picture_params)
 
     respond_to do |format|
@@ -69,6 +71,7 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:title, :url)
+      params[:user_id] = session[:user_id]
+      params.require(:picture).permit(:title, :image, :user_id)
     end
 end

@@ -1,3 +1,3 @@
 class Comment < ApplicationRecord
-  belongs_to :user, :picture 
+	belongs_to :picture; :user
 end

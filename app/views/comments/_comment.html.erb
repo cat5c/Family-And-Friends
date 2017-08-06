@@ -1,0 +1,15 @@
+<p>
+  <strong>Commenter:</strong>
+  <%= User.find(comment.user_id).username %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= comment.body %>
+</p>
+ 
+<% if comment.user_id == session[:user_id] %>
+	<p>
+	  <%= link_to 'Destroy Comment', [comment.picture, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+	</p>
+<% end %>
