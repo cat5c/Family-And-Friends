@@ -14,4 +14,11 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
+  resources :pictures do
+    member do
+      put "like", to: "pictures#like"
+      put "unlike", to: "pictures#unlike"
+    end
+  end
+
 end

@@ -22,10 +22,21 @@ class PicturesController < ApplicationController
   def edit
   end
 
+  def like
+    @picture = Picture.find(params[:id])
+    @picture.liked_by current_user
+    redirect_to @picture
+  end
+
+  def unlike
+    @picture = Picture.find(params[:id])
+    @picture.unliked_by current_user
+    redirect_to @picture
+  end
+
   # POST /pictures
   # POST /pictures.json
   def create
-    p params
     @picture = Picture.new(picture_params)
 
     respond_to do |format|
