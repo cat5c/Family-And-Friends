@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def index
+    @users = User.all.sort_by {|user| user.total_likes }.reverse
   end
 
   def show
@@ -14,6 +15,8 @@ class UsersController < ApplicationController
     p user_params
   	user = User.new(user_params)
     user.save
+    session[:user_id] = user.id
+    redirect_to '/'
   end
 
   private

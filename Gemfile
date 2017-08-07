@@ -11,7 +11,7 @@ gem 'rails', '~> 5.1.2'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 
-
+gem 'geocoder'
 
 gem 'paperclip'
 

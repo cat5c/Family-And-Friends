@@ -5,12 +5,21 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Picture.all
+    current_location = Geocoder.search("#{location.latitude}, #{location.longitude}").first
+    # p current_location
+    query = "#{current_location.city}, #{current_location.state}"
+    p query
+    @pictures = Picture.near(query, 50).order(cached_votes_up: :desc)
+  end
+
+  def all
+    @pictures = Picture.all.order(cached_votes_up: :desc)
   end
 
   # GET /pictures/1
   # GET /pictures/1.json
   def show
+    @location = Geocoder.search("#{@picture.latitude}, #{@picture.longitude}").first
   end
 
   # GET /pictures/new
@@ -22,12 +31,25 @@ class PicturesController < ApplicationController
   def edit
   end
 
+  def like
+    @picture = Picture.find(params[:id])
+    @picture.liked_by current_user
+    redirect_to @picture
+  end
+
+  def unlike
+    @picture = Picture.find(params[:id])
+    @picture.unliked_by current_user
+    redirect_to @picture
+  end
+
   # POST /pictures
   # POST /pictures.json
   def create
-    p params
     @picture = Picture.new(picture_params)
-
+    @picture.latitude = location.latitude
+    @picture.longitude = location.longitude
+    p @picture.latitude, @picture.longitude
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }

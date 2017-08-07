@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806024335) do
+ActiveRecord::Schema.define(version: 20170807014429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,22 @@ ActiveRecord::Schema.define(version: 20170806024335) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
+    t.integer "cached_votes_total", default: 0
+    t.integer "cached_votes_score", default: 0
+    t.integer "cached_votes_up", default: 0
+    t.integer "cached_votes_down", default: 0
+    t.integer "cached_weighted_score", default: 0
+    t.integer "cached_weighted_total", default: 0
+    t.float "cached_weighted_average", default: 0.0
+    t.float "latitude"
+    t.float "longitude"
+    t.index ["cached_votes_down"], name: "index_pictures_on_cached_votes_down"
+    t.index ["cached_votes_score"], name: "index_pictures_on_cached_votes_score"
+    t.index ["cached_votes_total"], name: "index_pictures_on_cached_votes_total"
+    t.index ["cached_votes_up"], name: "index_pictures_on_cached_votes_up"
+    t.index ["cached_weighted_average"], name: "index_pictures_on_cached_weighted_average"
+    t.index ["cached_weighted_score"], name: "index_pictures_on_cached_weighted_score"
+    t.index ["cached_weighted_total"], name: "index_pictures_on_cached_weighted_total"
     t.index ["user_id"], name: "index_pictures_on_user_id"
   end
 

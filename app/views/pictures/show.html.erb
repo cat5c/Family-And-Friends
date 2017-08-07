@@ -5,13 +5,24 @@
   <%= @picture.title %>
 </p>
 
-<%= link_to image_tag(@picture.image.url(:med)), @picture.image.url %>
+<%= link_to image_tag(@picture.image.url(:large)), @picture.image.url %>
+
+<p>
+	<% if current_user.voted_for? @picture %>
+		<%= link_to "Unlike", unlike_picture_path(@picture), method: :put %>
+	<% else %>
+		<%= link_to "Like", like_picture_path(@picture), method: :put %>
+	<% end %>
+</p>
+
+<p><%= @location.city %>, <%= @location.state %></p>
 
 <h2>Comments</h2>
 <%= render @picture.comments %>
  
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
+
 
 
 <%= link_to 'Edit', edit_picture_path(@picture) %> |
