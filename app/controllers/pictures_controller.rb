@@ -5,7 +5,7 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Picture.all
+    @pictures = Picture.order(cached_votes_up: :desc)
   end
 
   # GET /pictures/1
