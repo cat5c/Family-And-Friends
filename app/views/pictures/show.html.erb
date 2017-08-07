@@ -5,6 +5,11 @@
   <%= @picture.title %>
 </p>
 
+<p>
+  <strong>User:</strong>
+  <%= @picture.user.username %>
+</p>
+
 <%= link_to image_tag(@picture.image.url(:large)), @picture.image.url %>
 
 <p>
@@ -19,7 +24,7 @@
 
 <h2>Comments</h2>
 <%= render @picture.comments %>
- 
+
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
 

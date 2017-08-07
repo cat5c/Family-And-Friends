@@ -6,11 +6,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @pictures = @user.pictures
   end
 
   def new
   end
-  
+
   def create
     p user_params
   	user = User.new(user_params)

@@ -1,0 +1,36 @@
+<div class="container-fluid">
+
+    <% count = 0 %>
+
+    <% @pictures.each do |picture| %>
+      <% if count % 3 == 0 %>
+        <div class="row">
+      <% end %>
+      <div class="col-sm-12 col-md-4">
+        <div class="thumbnail thumbnail-height-fixed">
+          <%= link_to image_tag(picture.image.url(:med)), picture.image.url %>
+          <div class="caption text-center">
+            <h3><%= picture.title %></h3>
+            <p>
+              <% if current_user %>
+                <% if current_user.voted_for? picture %>
+              		<%= link_to "Unlike", unlike_picture_path(picture), method: :put, class: "btn btn-primary", role: "button"%>
+              	<% else %>
+              		<%= link_to "Like", like_picture_path(picture), method: :put, class: "btn btn-primary", role: "button" %>
+              	<% end %>
+              <% end %>
+
+              <%= link_to "Comment", "/pictures/#{picture.id}", class: "btn btn-default", role: "button" %>
+            </p>
+            <p><%= picture.votes_for.up.size %></p>
+
+          </div>
+        </div>
+      </div>
+      <% if count % 3 == 2 %>
+        </div>
+      <% end %>
+      <% count += 1 %>
+    <% end %>
+  </div>
+</div>
