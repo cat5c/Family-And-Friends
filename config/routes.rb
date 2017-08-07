@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 	
   root :to => redirect('/pictures')
+  
+  get 'pictures/all' => 'pictures#all'
 
   resources :pictures do
   	resources :comments
     member do
-    put "like", to: "pictures#like"
-    put "unlike", to: "pictures#unlike"
+      put "like", to: "pictures#like"
+      put "unlike", to: "pictures#unlike"
     end
   end
 
