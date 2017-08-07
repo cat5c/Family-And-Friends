@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
 	
+  root :to => redirect('/pictures')
+
   resources :pictures do
   	resources :comments
+    member do
+    put "like", to: "pictures#like"
+    put "unlike", to: "pictures#unlike"
+    end
   end
 
-  get '/users' => 'users#index'
+  # get '/users', to: redirect("/users/#{current_user.id}")
   get '/users/:id' => 'users#show'
+  get '/users/' => 'users#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -13,12 +20,5 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
-
-  resources :pictures do
-    member do
-      put "like", to: "pictures#like"
-      put "unlike", to: "pictures#unlike"
-    end
-  end
 
 end

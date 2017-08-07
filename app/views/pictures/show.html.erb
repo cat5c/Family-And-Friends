@@ -5,7 +5,7 @@
   <%= @picture.title %>
 </p>
 
-<%= link_to image_tag(@picture.image.url(:med)), @picture.image.url %>
+<%= link_to image_tag(@picture.image.url(:large)), @picture.image.url %>
 
 <p>
 	<% if current_user.voted_for? @picture %>
