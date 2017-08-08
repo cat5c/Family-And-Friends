@@ -21,6 +21,8 @@
               <% end %>
 
               <%= link_to "Comment", "/pictures/#{picture.id}", class: "btn btn-default", role: "button" %>
+
+              <%= link_to "Delete", "/pictures/#{picture.id}", method: 'destroy', class: "btn btn-default", role: "button" %>
             </p>
             <p><%= picture.votes_for.up.size %></p>
 

@@ -1,20 +1,2 @@
-<h1>Users</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Total Likes</th>
-
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.username, "/users/#{user.id}" %></td>
-        <td><%= user.total_likes %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render partial: "shared/userstable" %>
