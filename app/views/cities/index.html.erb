@@ -1,20 +1,9 @@
-<h1>Cities</h1>
+<%= render partial: "shared/citygrid" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>City</th>
-      <th>Total Likes</th>
+<div class= "text-center">
+  <%= link_to 'New Picture', new_picture_path, class: "btn btn-primary", role: "button" %>
+</div>
 
-    </tr>
-  </thead>
+<%= will_paginate @cities %>
 
-  <tbody>
-    <% @cities.each do |city| %>
-      <tr>
-        <td><%= link_to city.name, "/cities/#{city.id}" %></td>
-        <td><%= city.total_likes %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%#= console %>
