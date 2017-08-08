@@ -7,7 +7,7 @@ class CitiesController < ApplicationController
 
 	def show
 		query = [@city.latitude, @city.longitude]
-		@pictures = Picture.near(query, 50).order(cached_votes_up: :desc)
+		@pictures = Picture.near(query, 50).where("created_at >= now()- interval '1 day' ").order(cached_votes_up: :desc).paginate(:page => params[:page], :per_page => 1)
 	end
 
   private
