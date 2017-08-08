@@ -1,0 +1,20 @@
+<h1>Cities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>City</th>
+      <th>Total Likes</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cities.each do |city| %>
+      <tr>
+        <td><%= link_to city.name, "/users/#{city.id}" %></td>
+        <td><%= city.total_likes %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -23,4 +23,8 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
+  get '/cities' => 'cities#index'
+  get '/cities/:id' => 'cities#show'
+
+
 end
