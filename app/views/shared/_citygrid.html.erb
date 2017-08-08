@@ -1,27 +1,17 @@
 <div class="container-fluid">
   <% count = 0 %>
-  <% @cities.each do |picture| %>
+  <% @cities.each do |city| %>
     <% if count % 4 == 0 %>
       <div class="row">
     <% end %>
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail thumbnail-height-fixed">
-        <%= link_to image_tag(city.pictures.order(cached_votes_up: :desc).first.image.url(:med)), picture.image.url %>
+        <% picture = city.pictures.order(cached_votes_up: :desc).first %>
+        <% if picture %>
+          <%= link_to image_tag(city.pictures.order(cached_votes_up: :desc).first.image.url(:med)) %>
+        <% end %>
         <div class="caption text-center">
-          <h3><%= picture.title %></h3>
-          <p>
-            <% if current_user %>
-              <% if current_user.voted_for? picture %>
-            		<%= link_to "Unlike", unlike_picture_path(picture), method: :put, class: "btn btn-primary", role: "button"%>
-            	<% else %>
-            		<%= link_to "Like", like_picture_path(picture), method: :put, class: "btn btn-primary", role: "button" %>
-            	<% end %>
-            <% end %>
-
-            <%= link_to "Comment", "/pictures/#{picture.id}", class: "btn btn-default", role: "button" %>
-          </p>
-          <p><%= picture.votes_for.up.size %></p>
-
+          <h3><%= city.name %></h3>
         </div>
       </div>
     </div>
