@@ -1,18 +1,19 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
   before_action :set_city, only: [:new, :create]
-  # before_filter :authorize
+  before_action :authorize, only: [:show]
 
   # GET /pictures
   # GET /pictures.json
   def index
     current_location = Geocoder.search("#{location.latitude}, #{location.longitude}").first
     query = "#{current_location.city}, #{current_location.state}"
-    @pictures = Picture.near(query, 50).order(cached_votes_up: :desc)
+    @pictures = Picture.near(query, 50).where("created_at >= now()- interval '1 day' ").order(cached_votes_up: :desc).page(params[:page])
+    # @pictures = Picture.page(params[:page])
   end
 
   def all
-    @pictures = Picture.all.order(cached_votes_up: :desc)
+    @pictures = Picture.all.order(cached_votes_up: :desc).page(params[:page])
   end
 
   # GET /pictures/1
