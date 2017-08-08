@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807014429) do
+ActiveRecord::Schema.define(version: 20170808005506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -43,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170807014429) do
     t.float "cached_weighted_average", default: 0.0
     t.float "latitude"
     t.float "longitude"
+    t.bigint "city_id"
     t.index ["cached_votes_down"], name: "index_pictures_on_cached_votes_down"
     t.index ["cached_votes_score"], name: "index_pictures_on_cached_votes_score"
     t.index ["cached_votes_total"], name: "index_pictures_on_cached_votes_total"
@@ -50,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170807014429) do
     t.index ["cached_weighted_average"], name: "index_pictures_on_cached_weighted_average"
     t.index ["cached_weighted_score"], name: "index_pictures_on_cached_weighted_score"
     t.index ["cached_weighted_total"], name: "index_pictures_on_cached_weighted_total"
+    t.index ["city_id"], name: "index_pictures_on_city_id"
     t.index ["user_id"], name: "index_pictures_on_user_id"
   end
 
@@ -80,4 +88,5 @@ ActiveRecord::Schema.define(version: 20170807014429) do
 
   add_foreign_key "comments", "pictures"
   add_foreign_key "comments", "users"
+  add_foreign_key "pictures", "cities"
 end
