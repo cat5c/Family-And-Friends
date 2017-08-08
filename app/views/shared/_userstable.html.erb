@@ -1,0 +1,23 @@
+
+<table class="table table-bordered">
+
+  <thead class="thead-default">
+    <tr>
+      <th></th>
+      <th>User</th>
+      <th>Total likes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+
+      <tr>
+        <th scope="row active">
+        <td><h2><%= link_to user.username, user_path(user) %></h2></td>
+        <td><h3><%= user.total_likes %></h3></td>
+        </th>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>

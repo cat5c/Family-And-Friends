@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-	
-  root :to => redirect('/pictures')
-  
+
+  root 'pictures#index'
+
   get 'pictures/all' => 'pictures#all'
 
   resources :pictures do
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   # get '/users', to: redirect("/users/#{current_user.id}")
-  get '/users/:id' => 'users#show'
+  get '/users/:id' => 'users#show', as: 'user'
   get '/users/' => 'users#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/login' => 'sessions#new'
