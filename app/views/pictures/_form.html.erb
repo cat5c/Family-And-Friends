@@ -22,9 +22,8 @@
   </div>
 
   <%= form.hidden_field :user_id, :value => session[:user_id] %>
+  <%= form.hidden_field :city_id, :value => @city.id %>
 
-<!--   <% params[:user_id] = session[:user_id] %>
- -->
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -6,3 +6,7 @@
 .thumbnail-height-fixed {
   height: 19em;
 }
+
+.navbar-text {
+	padding-left: 15px;
+}

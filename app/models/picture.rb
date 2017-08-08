@@ -1,5 +1,5 @@
 class Picture < ApplicationRecord
-  belongs_to :user
+  belongs_to :user; :city
   has_many :comments
   acts_as_votable
   has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
