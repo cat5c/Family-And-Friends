@@ -1,19 +1,19 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  # before_filter :authorize
+  before_action :set_city, only: [:new, :create]
+  before_action :authorize, only: [:show]
 
   # GET /pictures
   # GET /pictures.json
   def index
     current_location = Geocoder.search("#{location.latitude}, #{location.longitude}").first
-    # p current_location
     query = "#{current_location.city}, #{current_location.state}"
-    p query
-    @pictures = Picture.near(query, 50).order(cached_votes_up: :desc)
+    @pictures = Picture.near(query, 50).where("created_at >= now()- interval '1 day' ").order(cached_votes_up: :desc).page(params[:page])
+    # @pictures = Picture.page(params[:page])
   end
 
   def all
-    @pictures = Picture.all.order(cached_votes_up: :desc)
+    @pictures = Picture.all.order(cached_votes_up: :desc).page(params[:page])
   end
 
   # GET /pictures/1
@@ -34,22 +34,23 @@ class PicturesController < ApplicationController
   def like
     @picture = Picture.find(params[:id])
     @picture.liked_by current_user
-    redirect_to @picture
+    redirect_back(fallback_location: root_path)
   end
 
   def unlike
     @picture = Picture.find(params[:id])
     @picture.unliked_by current_user
-    redirect_to @picture
+    redirect_back(fallback_location: root_path)
   end
 
   # POST /pictures
   # POST /pictures.json
   def create
-    @picture = Picture.new(picture_params)
+    # byebug
+    @picture = @city.pictures.create(picture_params)
     @picture.latitude = location.latitude
     @picture.longitude = location.longitude
-    p @picture.latitude, @picture.longitude
+    # p @picture.latitude, @picture.longitude
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
@@ -93,7 +94,14 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params[:user_id] = session[:user_id]
-      params.require(:picture).permit(:title, :image, :user_id)
+      # geo_location = Geocoder.search("#{location.latitude}, #{location.longitude}").first
+      # city = City.find_by(name: geo_location.city) || City.create(name: geo_location.city)
+      # params[:city_id] = city.id
+      params.require(:picture).permit(:title, :image, :user_id, :city_id)
+    end
+
+    def set_city
+      geo_location = Geocoder.search("#{location.latitude}, #{location.longitude}").first
+      @city = City.find_by(name: geo_location.city) || City.create(name: geo_location.city)
     end
 end

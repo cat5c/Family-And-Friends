@@ -16,10 +16,15 @@ gem 'geocoder'
 gem 'paperclip'
 
 gem 'acts_as_votable', '~> 0.10.0'
+
+gem 'will_paginate', '~> 3.1.0'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass'
+
+gem 'jquery-rails'
 
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

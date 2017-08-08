@@ -2,5 +2,7 @@
 <%= render partial: "shared/picgrid" %>
 
 <div class= "text-center">
-<%= link_to 'New Picture', new_picture_path, class: "btn btn-primary", role: "button" %>
+	<%= link_to 'New Picture', new_picture_path, class: "btn btn-primary", role: "button" %>
 </div>
+
+<%= will_paginate @posts %>

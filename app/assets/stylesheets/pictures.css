@@ -3,6 +3,10 @@
   They will automatically be included in application.css.
 */
 
-.thumbnail-height-fixed{
-  height: 200px;
+.thumbnail-height-fixed {
+  height: 19em;
+}
+
+.navbar-text {
+	padding-left: 15px;
 }
