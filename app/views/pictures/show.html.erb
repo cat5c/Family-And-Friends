@@ -28,9 +28,11 @@
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
 
-<h2> Delete</h2>
-<%= render @picture.destroy %>
+<% if current_user.id == @picture.user_id %>
 
+<%= link_to "Delete", "/pictures/#{@picture.id}", method: 'destroy', class: "btn btn-default", role: "button" %>
+
+<% end %>
 
 <%= link_to 'Edit', edit_picture_path(@picture) %> |
 <%= link_to 'Back', pictures_path %>

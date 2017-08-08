@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :pictures
+  has_many :pictures, dependent: :destroy
   has_many :comments, through: :pictures
   # has_many :comments
   acts_as_voter
