@@ -7,9 +7,7 @@ class PicturesController < ApplicationController
   # GET /pictures.json
   def index
     current_location = Geocoder.search("#{location.latitude}, #{location.longitude}").first
-    # p current_location
     query = "#{current_location.city}, #{current_location.state}"
-    p query
     @pictures = Picture.near(query, 50).order(cached_votes_up: :desc)
   end
 
@@ -35,13 +33,13 @@ class PicturesController < ApplicationController
   def like
     @picture = Picture.find(params[:id])
     @picture.liked_by current_user
-    redirect_to @picture
+    redirect_back(fallback_location: root_path)
   end
 
   def unlike
     @picture = Picture.find(params[:id])
     @picture.unliked_by current_user
-    redirect_to @picture
+    redirect_back(fallback_location: root_path)
   end
 
   # POST /pictures
@@ -95,9 +93,9 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      geo_location = Geocoder.search("#{location.latitude}, #{location.longitude}").first
-      city = City.find_by(name: geo_location.city) || City.create(name: geo_location.city)
-      params[:city_id] = city.id
+      # geo_location = Geocoder.search("#{location.latitude}, #{location.longitude}").first
+      # city = City.find_by(name: geo_location.city) || City.create(name: geo_location.city)
+      # params[:city_id] = city.id
       params.require(:picture).permit(:title, :image, :user_id, :city_id)
     end
 

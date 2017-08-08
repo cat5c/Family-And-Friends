@@ -6,7 +6,8 @@ class CitiesController < ApplicationController
 	end
 
 	def show
-		@pictures = @city.pictures
+		query = [@city.latitude, @city.longitude]
+		@pictures = Picture.near(query, 50).order(cached_votes_up: :desc)
 	end
 
   private

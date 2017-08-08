@@ -12,7 +12,7 @@
   <tbody>
     <% @cities.each do |city| %>
       <tr>
-        <td><%= link_to city.name, "/users/#{city.id}" %></td>
+        <td><%= link_to city.name, "/cities/#{city.id}" %></td>
         <td><%= city.total_likes %></td>
       </tr>
     <% end %>
