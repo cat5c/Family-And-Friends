@@ -1,18 +1,24 @@
-<h1 class="text-center">Login</h1>
-<br>
-<%= form_tag '/login' do %>
-	<div class="flex-centered-column">
-	  <div class="input-group">
-	  	<span class="input-group-addon" id="basic-addon11">Email:</span>
-	    <%= text_field_tag :email, "", class: "form-control", aria_describedby: "basic-addon11" %>
-    </div>
-	  <div class="input-group">
-	  	<span class="input-group-addon" id="basic-addon12">Password:</span>
-	    <%= password_field_tag :password, "", class: "form-control", aria_describedby: "basic-addon12" %>
+<p id="alert" class="text-center"><%= alert %></p>
+
+
+<% unless current_user %>
+	<h1 class="text-center">Login</h1>
+	<br>
+	<%= form_tag '/login' do %>
+		<div class="flex-centered-column">
+		  <div class="input-group">
+		  	<span class="input-group-addon" id="basic-addon11">Email:</span>
+		    <%= text_field_tag :email, "", class: "form-control", aria_describedby: "basic-addon11" %>
+	    </div>
+		  <div class="input-group">
+		  	<span class="input-group-addon" id="basic-addon12">Password:</span>
+		    <%= password_field_tag :password, "", class: "form-control", aria_describedby: "basic-addon12" %>
+		  </div>
 	  </div>
-  </div>
-  <br>
-	<div class= "text-center">
-	  <%= submit_tag "Login", class: "btn btn-primary", role: "button" %>
-	</div>
+	  <br>
+		<div class= "text-center">
+		  <%= submit_tag "Login", class: "btn btn-primary", role: "button" %>
+		</div>
+	<% end %>
 <% end %>
+<%= console %>
