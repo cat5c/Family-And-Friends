@@ -1,12 +1,17 @@
+<div class="container">
+   <div class="text-center">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong></strong>
   <%= @picture.title %>
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong>By:</strong>
   <%= @picture.user.username %>
 </p>
 
@@ -22,17 +27,20 @@
 
 <p><%= @location.city %>, <%= @location.state %></p>
 
-<h2>Comments</h2>
+<h3>Comments</h3>
 <%= render @picture.comments %>
 
-<h2>Add a comment:</h2>
+<h3>Add a comment:</h3>
 <%= render 'comments/form' %>
 
 <% if current_user.id == @picture.user_id %>
 
-<%= link_to "Delete", "/pictures/#{@picture.id}", method: 'destroy', class: "btn btn-default", role: "button" %>
+<%= link_to "Delete", "/pictures/#{@picture.id}", method: 'destroy', class: "btn btn-primary", role: "button" %>
 
 <% end %>
 
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
-<%= link_to 'Back', pictures_path %>
+<%= link_to 'Back', pictures_path, class: "btn btn-primary", role: "button" %>
+      </div>
+    </div>
+  </div>
+</div>
