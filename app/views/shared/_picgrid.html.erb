@@ -6,8 +6,10 @@
       <% end %>
       <div class="col-sm-6 col-md-3">
         <div class="thumbnail thumbnail-height-fixed">
-          <%= link_to image_tag(picture.image.url(:med)), picture.image.url %>
-          <div class="caption text-center">
+          <div class="image-thumbnail">
+            <%= link_to image_tag(picture.image.url(:med)), picture.image.url %>
+          </div>
+          <div class="caption text-center picgrd-caption">
             <h3><%= link_to picture.title, picture_path(picture.id) %></h3>
             <p>
               <% if current_user %>
@@ -35,6 +37,8 @@
   </div>
 </div>
 
-<div class= "text-center">
-  <%= link_to 'New Picture', new_picture_path, class: "btn btn-primary", role: "button" %>
+<%= render 'shared/newpic' %>
+
+<div class="digg-pagination text-center">
+  <%= will_paginate @pictures %>
 </div>

@@ -3,23 +3,23 @@
 <%= form_for :user, url: '/users' do |f| %>
 
 	<div class="flex-centered-column">
-	  <div class="row input-group">
+	  <div class="input-group">
 	  	<span class="input-group-addon" id="basic-addon1">Name:</span>
 	  	<%= f.text_field :name, :class => "form-control", :placeholder => "John Smith", :aria_describedby => "basic-addon1" %>
 		</div>
-	  <div class="row input-group">
+	  <div class="input-group">
 	  	<span class="input-group-addon" id="basic-addon2">Username:</span>
 			<%= f.text_field :username, :class => "form-control", :placeholder => "johnsmith", :aria_describedby => "basic-addon2" %>
 		</div>
-	  <div class="row input-group">
+	  <div class="input-group">
 	  	<span class="input-group-addon" id="basic-addon3">Email:</span>
 	    <%= f.text_field :email, :class => "form-control", :placeholder => "johnsmith@somewhere.com", :aria_describedby => "basic-addon3" %>
 	  </div>
-	  <div class="row input-group">
+	  <div class="input-group">
 	  	<span class="input-group-addon" id="basic-addon4">Password:</span>
 	      <%= f.password_field :password, :class => "form-control", :aria_describedby => "basic-addon4"  %>
 	  </div>
-	  <div class="row input-group">
+	  <div class="input-group">
 	  	<span class="input-group-addon" id="basic-addon5">Confirm Password:</span>
 	      <%= f.password_field :password_confirmation, :class => "form-control", :aria_describedby => "basic-addon5" %>
 	  </div>

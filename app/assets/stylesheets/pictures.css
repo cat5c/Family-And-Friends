@@ -10,3 +10,88 @@
 .navbar-text {
 	padding-left: 15px;
 }
+
+.digg-pagination {
+  background: white;
+  cursor: default;
+  /* self-clearing method: */ 
+}
+.digg-pagination a, .digg-pagination span, .digg-pagination em {
+  padding: 0.2em 0.5em;
+  display: block;
+  float: left;
+  margin-right: 1px; 
+}
+.digg-pagination .disabled {
+  color: #999999;
+  border: 1px solid #dddddd; 
+}
+.digg-pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  background: #222222;
+  color: white;
+  border: 1px solid #222222; 
+}
+.digg-pagination a {
+  text-decoration: none;
+  color: #222222;
+  border: 1px solid #222222; 
+}
+.digg-pagination a:hover, .digg-pagination a:focus {
+  background: #222222;
+  color: white;
+  border-color: #222222; 
+}
+.digg-pagination .page_info {
+  background: #2e6ab1;
+  color: white;
+  padding: 0.4em 0.6em;
+  width: 22em;
+  margin-bottom: 0.3em;
+  text-align: center; 
+}
+.digg-pagination .page_info b {
+  color: #000033;
+  background: #6aa6ed;
+  padding: 0.1em 0.25em; 
+}
+.digg-pagination:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; 
+}
+* html .digg-pagination {
+  height: 1%; 
+}
+*:first-child + html .digg-pagination {
+  overflow: hidden; 
+}
+
+.image-thumbnail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+}
+
+.picgrid-caption {
+  height: 50%;
+}
+
+.picgrid-caption h3 {
+  margin-top: 10px;
+}
+
+.flex-align-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  background-color: #E3EDEA;
+}
