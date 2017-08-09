@@ -1,0 +1,4 @@
+<h1 class="header-padding-left"><%= @city.name %> - All Time</h1>
+<h6><%= link_to "Past 24 Hours", "/cities/#{@city.id}" %></h6>
+
+<%= render partial: "shared/picgrid" %>
