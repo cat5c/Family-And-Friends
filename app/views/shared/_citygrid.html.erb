@@ -8,7 +8,7 @@
       <div class="thumbnail thumbnail-height-fixed">
         <% picture = city.pictures.order(cached_votes_up: :desc).first %>
         <% if picture %>
-          <%= link_to image_tag(city.pictures.order(cached_votes_up: :desc).first.image.url(:med)) %>
+          <%= link_to image_tag(picture.image.url(:med)) %>
         <% end %>
         <div class="caption text-center">
           <h3><%= city.name %></h3>

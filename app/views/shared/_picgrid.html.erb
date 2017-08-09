@@ -16,13 +16,10 @@
               	<% else %>
               		<%= link_to "Like", like_picture_path(picture), method: :put, class: "btn btn-primary", role: "button" %>
               	<% end %>
-              <% end %>
-
-              <%= link_to "Comment", "/pictures/#{picture.id}", class: "btn btn-default", role: "button" %>
-
-              <% if current_user.id == picture.user_id %>
-
-              <%= link_to "Delete", picture_path(picture), method: :delete, class: "btn btn-default", role: "button" %>
+                <%= link_to "Comment", "/pictures/#{picture.id}", class: "btn btn-default", role: "button" %>
+                <% if current_user.id == picture.user_id %>
+                  <%= link_to "Delete", picture_path(picture), method: :delete, class: "btn btn-default", role: "button" %>
+                <% end %>
               <% end %>
             </p>
             <p><%= picture.votes_for.up.size %></p>

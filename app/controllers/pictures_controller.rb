@@ -9,7 +9,6 @@ class PicturesController < ApplicationController
     current_location = Geocoder.search("#{location.latitude}, #{location.longitude}").first
     query = "#{current_location.city}, #{current_location.state}"
     @pictures = Picture.near(query, 50).where("created_at >= now()- interval '1 day' ").order(cached_votes_up: :desc).page(params[:page])
-    # @pictures = Picture.page(params[:page])
   end
 
   def all
