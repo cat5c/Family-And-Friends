@@ -5,13 +5,13 @@
       <div class="row">
     <% end %>
     <div class="col-sm-6 col-md-3">
-      <div class="thumbnail thumbnail-height-fixed">
+      <div class="thumbnail thumbnail-height-fixed flex-align-center">
         <% picture = city.pictures.order(cached_votes_up: :desc).first %>
         <% if picture %>
-          <%= link_to image_tag(city.pictures.order(cached_votes_up: :desc).first.image.url(:med)) %>
+          <%= link_to image_tag(picture.image.url(:large)) %>
         <% end %>
         <div class="caption text-center">
-          <h3><%= city.name %></h3>
+          <h3><%= link_to city.name, "/cities/#{city.id}" %></h3>
         </div>
       </div>
     </div>
@@ -20,4 +20,10 @@
     <% end %>
     <% count += 1 %>
   <% end %>
+</div>
+
+<% render 'shared/newpic' %>
+
+<div class="digg-pagination text-center">
+  <%= will_paginate @cities, class: "pagination" %>
 </div>

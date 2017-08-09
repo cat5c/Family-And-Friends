@@ -1,8 +1,9 @@
-<h1><%= @city.name %> - Past 24 Hours</h1>
+<h1>All Pictures</h1>
 <h6>
+  <%= link_to "Your Location - Last 24 Hours", "/pictures/" %> | 
   <%= link_to "All - Last 24 Hours", "/pictures/all" %> | 
   <%= link_to "All-Time - Your Location", "/pictures/alltime" %> | 
-  <%= link_to "All Pictures", "/pictures/allpics" %>
 </h6>
+
 
 <%= render partial: "shared/picgrid" %>

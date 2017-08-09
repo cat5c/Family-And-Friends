@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @pictures = @user.pictures
+    @pictures = @user.pictures.order(cached_votes_up: :desc).page(params[:page])
   end
 
   def new

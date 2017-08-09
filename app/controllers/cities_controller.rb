@@ -1,20 +1,23 @@
 class CitiesController < ApplicationController
 	require 'will_paginate/array'
-	before_action :set_city, only: [:show]
+	before_action :set_city, only: [:show, :all]
 
 	def index
 		params[:page] = params[:page] || 1
 		sorted_cities_arr = City.all.sort_by {|city| city.total_likes }.reverse
-
-
-		@cities = WillPaginate::Collection.create(params[:page], 12, sorted_cities_arr.length) do |pager|
+		@cities = WillPaginate::Collection.create(params[:page], City.per_page, sorted_cities_arr.length) do |pager|
 		  pager.replace sorted_cities_arr[pager.offset, pager.per_page]
 		end
 	end
 
 	def show
 		query = [@city.latitude, @city.longitude]
-		@pictures = Picture.near(query, 50).where("created_at >= now()- interval '1 day' ").order(cached_votes_up: :desc).page(params[:page])
+		@pictures = Picture.near(query, 35).where("created_at >= now()- interval '1 day' ").order(cached_votes_up: :desc).page(params[:page])
+	end
+
+	def all
+		query = [@city.latitude, @city.longitude]
+		@pictures = Picture.near(query, 35).order(cached_votes_up: :desc).page(params[:page])
 	end
 
   private
