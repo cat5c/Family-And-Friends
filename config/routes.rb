@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'pictures#index'
 
+  #additional pictures routes
   get 'pictures/all' => 'pictures#all'
   get 'pictures/alltime' => 'pictures#alltime'
   get 'pictures/allpics' => 'pictures#allpics'
@@ -14,18 +15,21 @@ Rails.application.routes.draw do
     end
   end
 
-  # get '/users', to: redirect("/users/#{current_user.id}")
+  #users routes
   get '/users/' => 'users#index'
   get '/users/:id' => 'users#show', as: 'user'
   get '/users/:id/comments' => 'users#comments'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  #login routes
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+  #signup routes
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
+  #cities routes
   get '/cities' => 'cities#index'
   get '/cities/:id' => 'cities#show'
   get '/cities/:id/all' => 'cities#all'
