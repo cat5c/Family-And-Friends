@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20170809203123) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "picture_id"
-    t.text "body"
     t.bigint "user_id"
+    t.text "body"
     t.index ["picture_id"], name: "index_comments_on_picture_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170809203123) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"
@@ -76,9 +76,9 @@ ActiveRecord::Schema.define(version: 20170809203123) do
 
   create_table "votes", force: :cascade do |t|
     t.string "votable_type"
-    t.integer "votable_id"
+    t.bigint "votable_id"
     t.string "voter_type"
-    t.integer "voter_id"
+    t.bigint "voter_id"
     t.boolean "vote_flag"
     t.string "vote_scope"
     t.integer "vote_weight"
@@ -93,4 +93,5 @@ ActiveRecord::Schema.define(version: 20170809203123) do
   add_foreign_key "comments", "pictures"
   add_foreign_key "comments", "users"
   add_foreign_key "pictures", "cities"
+  add_foreign_key "pictures", "users"
 end
