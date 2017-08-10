@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def location
 	  if params[:location].blank?
 	    if Rails.env.test? || Rails.env.development?
-	      @location ||= Geocoder.search("129.137.16.243").first
+	      @location ||= Geocoder.search("173.255.190.38").first
 	    else
 	      @location ||= request.location
 	    end
