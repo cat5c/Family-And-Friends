@@ -12,7 +12,7 @@
 }
 
 .digg-pagination {
-  background: white;
+  background: none;
   cursor: default;
   /* self-clearing method: */ 
 }
