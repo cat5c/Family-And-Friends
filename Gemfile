@@ -18,6 +18,7 @@ gem 'rename'
 gem 'geocoder'
 
 gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
 
 gem 'acts_as_votable', '~> 0.10.0'
 
