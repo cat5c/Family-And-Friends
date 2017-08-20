@@ -1,24 +1,7 @@
-# README
+This webapp was completed by Catheryn Celaya and Joe Cassiere for "Family & Friends Night" at Wyncode Academy.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+PhotoIt is a geolocation-based picture app.  Users can upload and vote on others' pictures.
 
-Things you may want to cover:
+The main page displays the most popular pictures uploaded in the user's area within the last 24 hours.  Pictures older than 24 hours and from other areas can be found on other pages on the site.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The site can be found at https://photoit.herokuapp.com/
